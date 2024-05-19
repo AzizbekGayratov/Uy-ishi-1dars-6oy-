@@ -1,0 +1,56 @@
+@use "./login";
+@use "./products";
+@use "./single-product";
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+// @import "./modal";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+}
+
+body {
+  font-size: 1.6rem;
+  padding: 10px;
+  font-family: "Inter", sans-serif;
+}
+
+input,
+button,
+select {
+  font-family: inherit;
+}
+
+image {
+  display: block;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+aside a {
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 230px 3fr;
+  gap: 1rem;
+
+  @media screen and (width < 750px) {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,220 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.input-wrapper {
+  margin-bottom: 2rem;
+}
+
+input {
+  border: none;
+  border-bottom: 2px solid;
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+input:focus {
+  outline: none;
+  border-bottom-color: dodgerblue;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+button.visibility-btn {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 50%;
+}
+
+.container {
+  margin: auto;
+  background: #f3f3f3;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.container li {
+  background: #fff;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.container li>a {
+  display: block;
+  margin-top: 20px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 4px solid dodgerblue;
+  border-top-color: transparent;
+  border-radius: 50%;
+  -webkit-animation-name: spin;
+  animation-name: spin;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+a {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+.product {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  padding: 10px;
+  font-family: "Inter", sans-serif;
+}
+
+input,
+button,
+select {
+  font-family: inherit;
+}
+
+image {
+  display: block;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+aside a {
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+
+  .modal__container {
+    width: 500px;
+    background-color: white;
+  }
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal__close {
+  display: block;
+  margin-left: auto;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  margin-bottom: 5px;
+  cursor: pointer
+}
+
+.modal__content {
+  padding: 20px 10px 10px 10px;
+}
+
+.modal__btn_box {
+  margin-top: 20px;
+}
+
+.edit_items_box {
+  button {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    margin-bottom: 15px;
+    background-color: rgb(177, 215, 215);
+    cursor: pointer;
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 230px 3fr;
+  gap: 1rem;
+}
+
+@media screen and (width < 750px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form_btn{
+  margin-top: 20px;
+}
+/*# sourceMappingURL=style.css.map */

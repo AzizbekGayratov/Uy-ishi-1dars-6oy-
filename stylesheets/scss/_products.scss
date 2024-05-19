@@ -1,0 +1,57 @@
+img {
+  display: block;
+  width: 100%;
+  height: 50%;
+}
+
+.container {
+  // max-width: 700px;
+  margin: auto;
+  background: #f3f3f3;
+  padding: 10px;
+
+  // display: flex;
+  // flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+
+  li {
+    // width: 150px;
+    background: #fff;
+    padding: 10px;
+
+    // flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  li > a {
+    display: block;
+    margin-top: 20px;
+  }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 4px solid dodgerblue;
+  border-top-color: transparent;
+  border-radius: 50%;
+
+  animation-name: spin;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+}
+
+a {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotateZ(360deg);
+  }
+}
