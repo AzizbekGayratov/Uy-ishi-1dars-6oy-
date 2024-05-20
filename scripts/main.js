@@ -34,6 +34,7 @@ const select = () => {
     box.prepend(select)
 
     select.addEventListener("change", (e) => {
+        showSpinner();
         const value = e.target.value;
         localStorage.setItem("arr", JSON.stringify(value));
         renderSelect();
@@ -47,23 +48,25 @@ const renderProducts = (products) => {
     main.append(cardBox);
 
 
-    cardBox.innerHTML = products.map((product) => (`
-    <li id="productId-${product.id}">
-        <img src="${product.image}" alt="img">
-        <a href="http://127.0.0.1:9000/product.html?id=${product.id}">
-            <p class="title">${product.title}</p>
-        </a>
-        <strong class="price">${product.price}</strong>
-        <div>
-            ${productRate(product.rating.rate)}
-        </div>
-        <div>
-            <p>(${product.rating.count})</p>
-        </div>
-        <button class="edit" data-edit="${product.id}">Edit</button>
-        <button class="delete" data-delete="${product.id}">Delete</button>
-    </li>
-    `)).join("")
+    products.forEach((product) => {
+        cardBox.innerHTML += `
+        <li data-click="${product.id}" id="productId-${product.id}">
+            <img src="${product.image}" alt="img">
+            <a href="http://127.0.0.1:9000/product.html?id=${product.id}">
+                <p class="title">${product.title}</p>
+            </a>
+            <strong class="price">${product.price}</strong>
+            <div>
+                ${productRate(product.rating.rate)}
+            </div>
+            <div>
+                <p>(${product.rating.count})</p>
+            </div>
+            <button class="edit" data-edit="${product.id}">Edit</button>
+            <button class="delete" data-delete="${product.id}">Delete</button>
+        </li>
+        `
+    })
 }
 const getData = async () => {
     showSpinner()
@@ -90,6 +93,7 @@ const renderSelect = () => {
         fetch("https://fakestoreapi.com/products").then((res) => res.json()).then((data) => {
             main.innerHTML = "";
             renderProducts(data)
+            hideSpinner()
         })
     } else {
         fetch(`https://fakestoreapi.com/products/category/${arr}`)
@@ -97,6 +101,7 @@ const renderSelect = () => {
             .then(data => {
                 main.innerHTML = "";
                 renderProducts(data)
+                hideSpinner()
             })
     }
 }
@@ -162,19 +167,44 @@ const editProduct = (id) => {
         event.preventDefault();
         const title = document.querySelector(".form_title");
         const price = document.querySelector(".form_price");
-        const des = document.querySelector(".form_des");
+
         fetch(`https://fakestoreapi.com/products/${id}`, {
             method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 title: title.value,
                 price: price.value,
-                description: des.value
             }),
-        }).then((res) => res.json()).then(() => {
+        }).then((res) => {
+            return res.json()
+        }).then((json) => {
+            // console.log(json.id);
+            fetchData(json.id)
             modal.style.display = "none";
             renderProducts();
         })
     })
+}
+
+const fetchData = (id) => {
+    fetch(`https://fakestoreapi.com/products/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            const product = document.getElementById(`productId-${id}`);
+            const title = product.querySelector(".title");
+            const price = product.querySelector(".price");
+            console.log(title, price);
+
+            const intitle = document.querySelector(".form_title");
+            const inprice = document.querySelector(".form_price");
+
+            title.textContent = intitle.value;
+            price.textContent = inprice.value;
+
+            console.log(data);
+        })
 }
 
 const fetchEditedProduct = (id) => {
@@ -183,10 +213,8 @@ const fetchEditedProduct = (id) => {
         .then(data => {
             const title = document.querySelector(".form_title");
             const price = document.querySelector(".form_price");
-            const des = document.querySelector(".form_des");
             title.value = data.title;
             price.value = data.price;
-            des.value = data.description;
         })
 }
 
